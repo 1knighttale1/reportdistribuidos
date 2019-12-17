@@ -22,6 +22,7 @@ Route::post('persona/guardar','PersonaController@store')->name('persona.guardar'
 Route::get('persona/edit/{id}','PersonaController@edit')->name('persona.edit');
 Route::post('persona/edit' , 'PersonaController@update')->name('persona.actualizar');
 Route::get('persona/eliminar/{id}','PersonaController@destroy');
+
 //parte de administrador
 Route::get('administrador' , 'AdministradorController@index')->name('administrador.index');
 Route::get('administrador/nuevo/{id}' , 'AdministradorController@create')->name('administrador.nuevo');
@@ -29,6 +30,7 @@ Route::get('administrador/edit/{id}' , 'AdministradorController@edit')->name('ad
 Route::post('administrador/edit' , 'AdministradorController@update')->name('administrador.actualizar');
 Route::post('administrador/guardar' , 'AdministradorController@store')->name('administrador.guardar');
 Route::get('administrador/eliminar/{id}' , 'AdministradorController@destroy');
+
 //parte de arbitro
 Route::get('arbitro' , 'ArbitroController@index') -> name('arbitro.index');
 Route::get('arbitro/nuevo/{id}','ArbitroController@create') ->name('arbitro.nuevo');
@@ -46,16 +48,19 @@ Route::get('/fixture/eliminar/{id}','FixtureController@destroy')->name('fixture.
 Route::get('/fixture/rol/{id}','FixtureController@rol')->name('fixture.rol');
 Route::get('/fixture/resultados/{id}','FixtureController@resultados')->name('fixture.resultados');
 
+//grupo
 Route::get('/grupo/{id}','GrupoController@index')->name('grupo.index');
 Route::get('/grupo/edit/{id}','GrupoController@edit')->name('grupo.edit');
 Route::post('/grupo/actualizar','GrupoController@update')->name('grupo.actualizar');
 Route::post('/grupo/eliminar','GrupoController@destroy')->name('grupo.eliminar');
 
-Route::get('/actividad/{id}','ActividadController@index')->name('actividad.index');
+//actividad
+Route::get('/actividad','ActividadController@index')->name('actividad.index');
 Route::get('/actividad/edit/{id}','ActividadController@edit')->name('actividad.edit');
 Route::post('/actividad/actualizar','ActividadController@update')->name('actividad.actualizar');
 Route::post('/actividad/eliminar','ActividadController@destroy')->name('actividad.eliminar');
 
+//partido
 Route::get('/partido/{id}','PartidoController@index')->name('partido.index');
 Route::get('/partido/edit/{id}','PartidoController@edit')->name('partido.edit');
 Route::post('/partido/actualizar','PartidoController@update')->name('partido.actualizar');
@@ -64,7 +69,7 @@ Route::get('/partido/partidos_arbitro/{id}','PartidoController@partidos_arbitro'
 Route::get('/partido/resultado/{id}','PartidoController@resultados')->name('partido.resultados');
 Route::post('/partido/guardar_resultado','PartidoController@guardar_resultado')->name('partido.guardar_resultado');
 
-
+//delegado
 Route::get('delegado','DelegadoController@index')->name('delegado.index');
 Route::get('delegado/nuevo','DelegadoController@create')->name('delegado.create');
 
@@ -75,6 +80,7 @@ Route::post('delegado/editar','DelegadoController@update')->name('delegado.actua
 
 Route::get('delegado/eliminar/{id}','DelegadoController@destroy')->name('delegado.eliminar');
 
+//equipo
 Route::get('equipo','EquipoController@index')->name('equipo.index');
 
 Route::get('equipo/nuevo','EquipoController@create')->name('equipo.crear');
@@ -85,6 +91,7 @@ Route::post('equipo/actualizar','EquipoController@update')->name('equipo.actuali
 
 Route::get('equipo/eliminar/{id}','EquipoController@destroy')->name('equipo.eliminar');
 
+//jugador
 Route::get('jugador','JugadorController@index')->name('jugador.index');
 
 Route::get('jugador/equipo','JugadorController@equipo')->name('jugador.equipo');

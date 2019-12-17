@@ -15,7 +15,6 @@ class GrupoController extends Controller
      */
     public function index($id)
     {
-        $id=Crypt::decrypt($id);
         $fixt=Fixture::find($id);
         return view('grupo.index')->with('fixture',$fixt);
     }
@@ -75,15 +74,10 @@ class GrupoController extends Controller
      */
     public function update(Request $request)
     {
-      $id=Crypt::decrypt($request['id']);
-      $reglas=array(
-        'nombre'=>'required'
-      );
-      $this->validate($request,$reglas);
       $grupo=Grupo::find($id);
       $grupo->nombre=$request['nombre'];
       $grupo->save();
-      return redirect('/grupo/'.Crypt::encrypt($grupo->fixture()->get()->last()->id))->with('estado','el grupo '.$grupo->nombre.' fue actualizado correctamente!!!');
+      return redirect('/grupo/'.$grupo->fixture()->get()->last()->id);
     }
 
     /**
@@ -94,7 +88,6 @@ class GrupoController extends Controller
      */
     public function destroy(Request $request)
     {
-        $id=Crypt::decrypt($request['id']);
         $fix=Grupo::find($id)->fixture()->get()->last();
         $acts=Grupo::find($id)->actividades()->get();
         foreach($acts as $act){
@@ -105,6 +98,6 @@ class GrupoController extends Controller
           $act->delete();
         }
         Grupo::destroy($id);
-        return redirect('/grupo/'.Crypt::encrypt($fix->id))->with('estado','el grupo fue eliminado exitosamente!!!');
+        return redirect('/grupo/'.$fix->id);
     }
 }

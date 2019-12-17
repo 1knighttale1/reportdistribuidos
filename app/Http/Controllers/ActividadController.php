@@ -17,7 +17,6 @@ class ActividadController extends Controller
      */
     public function index($id)
     {
-        $id=Crypt::decrypt($id);
         $grupo=Grupo::find($id);
         return view('actividad.index')->with('grupo',$grupo);
     }
@@ -62,7 +61,6 @@ class ActividadController extends Controller
      */
     public function edit($id)
     {
-        $id=Crypt::decrypt($id);
         $act=Actividad::find($id);
         return view('actividad.edit')->with('actividad',$act);
     }
@@ -76,18 +74,13 @@ class ActividadController extends Controller
      */
     public function update(Request $request)
     {
-        $id=Crypt::decrypt($request['id']);
         $act=Actividad::find($id);
-        $reglas=array(
-          'nombre'=>'required'
-        );
-        $this->validate($request,$reglas);
         $act->nombre=$request['nombre'];
         $act->fecha_inicio=$request['fecha_inicio'];
         $act->fecha_fin=$request['fecha_fin'];
         $act->save();
         $gid=$act->grupo()->get()->last()->id;
-        return redirect('/actividad/'.Crypt::encrypt($gid))->with('estado','la actividad '.$act->nombre.' se actualizo correctamente');
+        return redirect('/actividad/'.$gid)->with('estado','la actividad se actualizo ');
     }
 
     /**
@@ -98,7 +91,6 @@ class ActividadController extends Controller
      */
     public function destroy(Request $request)
     {
-        $id=Crypt::decrypt($request['id']);
         $act=Actividad::find($id);
         $grupo=$act->grupo()->get()->last();
         $ps=$act->partidos()->get();
@@ -106,6 +98,6 @@ class ActividadController extends Controller
           $p->delete();
         }
         $act->delete();
-        return redirect('/actividad/'.Crypt::encrypt($grupo->id))->with('estado','La actividad se elimino exitosamente!!!');
+        return redirect('/actividad/'.$grupo->id)->with('estado','La actividad se elimino');
     }
 }

@@ -40,8 +40,8 @@
         <input type="email" name="email" id="email" placeholder="pedro@example.com" value="{{ old('email') }}">
         </label><br><br>
 
-        <button type="reset" class="btn-danger"style='width:70px;height:25px'> Borrar</button>
-        <button type="submit" class="btn-success" style='width:70px; height:25px'> Guardar</button>
+        <button type="reset"> Borrar</button>
+        <button type="submit"> Guardar</button>
 {{ Form::close() }}
 </body>
 </html>

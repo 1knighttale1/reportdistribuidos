@@ -5,33 +5,25 @@
 </head>
 <body>
 	  
-		@extends ('layout')
+<h2>ARBITROS</h2>
 
-		<br><br><br>
-
-	 <link rel="stylesheet" href="css/style.css">
-	<div class="btn-group" role="group" aria-label="..." class="trans" style="z-index:1;filter:alpha(opacity=60);-moz-opacity:.60;opacity:.60" >
-            <div class="btn-group" role="group">
-                
-               <select class="form-control" >
-                @foreach($datos['personas'] as $persona)
-                <option> {{$persona->nombre}} {{$persona->ap_paterno}} {{$persona->ap_materno}}</option>
-                @endforeach
-            </select>
-            </div>
-        </div> 
-         <a href="arbitro/nuevo/{{$persona->idar}}"
-                    target="_blank"
-                    class="btn btn-default btn-warning">Seleccionar</i>
-                </a> 
+	<br>    
+        <select>
+            @foreach($datos['personas'] as $persona)
+            <option> {{$persona->nombre}} {{$persona->ap_paterno}} {{$persona->ap_materno}}</option>
+            @endforeach
+    	</select>
+            
+         <a href="arbitro/nuevo/{{$persona->idar}}">Seleccionar</a> 
            <br><br><br>       
-		<table  class="table table-striped" style="color: black; background:yellowgreen ; z-index:1;filter:alpha(opacity=60);-moz-opacity:.60;opacity:.60">
+		<table border="1">
 		<thead>
 				<tr class="active">
 					<td><b>ID</b></td>
 					<td><b>Nombre</b></td>
 					<td><b>Apellido Paterno</b></td>
 					<td><b>Apellido Materno</b></td>
+					<td><b>Opciones</b></td>
 					
 				</tr>
 		</thead>
@@ -42,12 +34,12 @@
 					<td> {{ $arbitro -> nombre }} </td>
 					<td> {{ $arbitro -> ap_paterno}} </td>
 					<td> {{ $arbitro -> ap_materno }} </td>
-					<td> <a href="arbitro/edit/{{$arbitro->id}}" class="btn btn-primary"> Editar Datos </a> 
-					<a href="arbitro/eliminar/{{ $arbitro->id}}" class="btn btn-danger"  onclick="return confirm ('¿Eliminar arbitro?')"> Eliminar </a>
+					<td> <a href="arbitro/edit/{{$arbitro->id}}" > Editar Datos</a> |
+					<a href="arbitro/eliminar/{{ $arbitro->id}}" > Eliminar </a>
 				    </td>
 				</tr>
 		 	@endforeach
-			@endif
+		@endif
 		</table>
 </body>
 </html>

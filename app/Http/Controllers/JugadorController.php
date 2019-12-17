@@ -85,40 +85,7 @@ class JugadorController extends Controller
      */
     public function store(Request $request)
     {
-        $reglas = array(
-            'ci' => 'required|min:100000|max:999999|numeric|unique:personas',
-            'nombre' => 'required|String',
-            'ap_paterno' => 'required|String',
-            'ap_materno' => 'required|String',
-            'email' => 'required|E-Mail|unique:personas',
-            );
-        $mensajes = array(
-            'ci.unique' => 'El ci ya ha sido registrado',
-            'ci.min' => 'El ci debe tener al menos 6 dígitos',
-            'ci.max' => 'El ci  no debe tener al más de 6 dígitos',
-            'nombre.required' => 'El nombre es obligatorio',
-            'nombre.string' => 'El nombre solo debe contener letras',
-            'ap_paterno.required' => 'El apellido paterno es obligatorio',
-            'ap_paterno.string' => 'El apellido solo debe contener caracteres',
-            'ap_materno.required' => 'El apellido materno es obligatorio',
-            'ap_materno.string' => 'El apellido materno solo debe contener caractres',
-            'email.unique' => 'El email ya ha sido registrado');
-
-        $errores = $this->validate($request,$reglas,$mensajes);
-        if($errores)
-        {
-            $count = Jugador::where('equipo_id',$request['ideq'])
-                            ->count();
-            if($count <= 10)
-            {
-                $numerorep = DB::table('jugadores')
-                            ->where('equipo_id',$request['ideq'])
-                            ->where('numero',$request['numero'])
-                            ->get()
-                            ->last();
-
-                if(is_null($numerorep))
-                {
+        
                     $persona = new Persona;
                     $jugador = new Jugador;
 
@@ -138,18 +105,6 @@ class JugadorController extends Controller
                     $jugador->persona_id = $persona->id;
                     $jugador->save();
                     return redirect('jugador');
-                }
-                else
-                {
-                   return redirect('jugador/nuevo')->with('mensaje','Ese número ya existe en el equipo')->withInput();
-                }
-
-            }
-            else
-            {
-                return redirect('jugador/nuevo')->with('mensaje','El equipo ya posee 11 miembros')->withInput();
-            }
-        }
     }
 
     /**

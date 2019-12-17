@@ -32,15 +32,7 @@ class DelegadoController extends Controller
      */
     public function create()
     { 
-        //$persona = Persona::find($id);
-
-         /*$persona= DB::table('personas')
-                     ->select('personas.id as idpe','nombre','ap_paterno','ap_materno')
-                     ->whereNotIn('id', DB::table('delegados')->select('delegados.persona_id'))
-                     ->get();*/
-
-        return view('delegado.create');//->with('personas',$persona);
-    }
+        return view('delegado.create');
 
     /**
      * Store a newly created resource in storage.

@@ -31,7 +31,9 @@
     <label for="email">Correo electrónico:</label>
     <input type="email" name="email" id="email" value="{{ old('email' , $persona->email)}}" disabled="email"><br><br>
 
-    {{Form::button('Actualizar',['type'=>"submit",'class'=>"btn btn-success"])}}
+    {{Form::button('Actualizar',['type'=>"submit"]) }}
+    
+{{ Form::close() }}
 
 </body>
 </html>

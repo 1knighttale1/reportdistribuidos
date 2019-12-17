@@ -80,19 +80,7 @@ class PersonaController extends Controller
      */
     public function update(Request $request )
     {
-        /*
-            $reglas=array(
-              'nombre'=>'required|string|min:3|max:30',
-              'ap_paterno'=>'required|string|min:4|max:15',
-              'ap_materno'=>'required|string|min:4|max:15',
-              'fecha_nacimiento'=>'required|date',
-             ); 
-           $mensaje = array(
-            'nombre.required' => 'El campo Nombre es necesario llenarlo',
-            'ap_materno.required' => 'El campo Apellido Materno es necesario llenarlo',);
-           $this->validate($request,$reglas,$mensaje);
-           */
-           //dd($request);
+        
             $per = Persona::find($request['id']);
             $per->nombre=$request->input('nombre');
             $per->ap_paterno=$request->input('ap_paterno');
